@@ -117,7 +117,7 @@
     $('#stok_barang').on('change', function(){
         var qty = $('#stok_barang').val()
         $('#stok').val(qty)
-        $('#stok_barang').val(new Intl.NumberFormat("id-ID").format(qty))
+        //$('#stok_barang').val(new Intl.NumberFormat("id-ID").format(qty))
     })
 
 

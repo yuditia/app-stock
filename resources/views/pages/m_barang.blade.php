@@ -60,7 +60,7 @@
                                                     <td><img src="{{ asset('barang_img/'.$item->foto_barang) }}" width="100px" height="100px"></td>
                                                     <td>{{ $item->nm_barang }}</td>
                                                     <td><p class="clamp-3">{{ $item->wr_barang }}</p></td>
-                                                    <td>{{ number_format($item->stok_barang,0,",",".") }}
+                                                    <td>{{ number_format($item->stok_barang,2,",",".") }}
                                                         @if ($item->satuan == 1)
                                                             Meter
                                                         @elseif ($item->satuan == 1)
