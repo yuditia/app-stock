@@ -1,0 +1,135 @@
+.mx-w200{
+    max-width:300px;
+}
+
+.mx-w100{
+    max-width:150px;
+}
+
+
+.greycl-2{
+    color: #7e7e7e;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.cl-8a{
+    color: #8a8a8a;
+}
+
+.icon-dash{
+    font-size: 60px;
+    color: #00bdff;
+    text-align: right;
+    float: right;
+}
+
+.lh1-8{
+    line-height: 1.8;
+}
+
+.icon-dash2{
+    font-size: 60px;
+    text-align: right;
+    float: right;
+}
+
+.bdr-card-x{
+    border-bottom: 5px solid #1249ca;
+}
+
+
+.visi-m ul li{
+    color: #8a8a8a;
+}
+
+
+.gradient-bn{
+    width: 100%;
+    height: 10%;
+    z-index: 9;
+    position: absolute;
+    left: -1px;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+}
+
+
+.bannerDashboard .swiper-button-next, .bannerDashboard .swiper-button-prev{
+    /* background-color:white; */
+    filter: drop-shadow(2px 0px 2px white);
+   }
+
+   .float-right{
+    float: right;
+   }
+
+   .bg-grey-8{
+    margin-right: -12px;
+    color: #7987a1;
+}
+
+.text-gradient-warning {
+    background: -webkit-linear-gradient(#f6d365,#ff7850);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.text-gradient-primary {
+    background: linear-gradient(to right,#30cfd0 0,#330867 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-success {
+    background: -webkit-linear-gradient(#42e695,#3bb2b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.text-gradient-danger {
+    background: -webkit-linear-gradient(#f81f8b,#f56348);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.fw-bold{
+    font-weight:bold;
+}
+
+
+.img-view-history img{
+
+        width: 100px;
+        height: auto;
+        border-radius: 15px;
+
+}
+
+.table.img-view-history td img {
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+}
+
+.his-btn{
+    width: 200px;
+    float: right;
+}
+
+.line-clamp3 , .clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .bg-maps{
+    background-image: url('../images/bg-account.jpg') !important;
+    background-size: cover !important;
+    backdrop-filter: drop-shadow(2px 4px 6px black);
+  }
+
+
+  .br-login-5{
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 10px 0 rgb(183 192 206 / 35%);
+  }
