@@ -76,7 +76,7 @@
                                     <div class="mb-3">
                                         <label for="stok_barang" class="form-label fw-bold">QTY</label>
                                         <input type="text" id="stok_barang" class="form-control"
-                                        aria-describedby="stok_barang" value="{{ number_format($data->qty,0,",",".") }}">
+                                        aria-describedby="stok_barang" value="{{ number_format($data->qty,2,",",".") }}">
                                         <input type="hidden" name="qty" id="stok">
                                         <input type="hidden" name="old_qty" value="{{ $data->qty }}">
                                     </div>

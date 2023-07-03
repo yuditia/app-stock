@@ -105,7 +105,7 @@
                                                         <td>{{ $item2->nm_barang }}</td>
                                                         <td>{{ $item2->wr_barang }}</td>
 
-                                                        <td>{{ number_format($item->qty,0,",",".") }}
+                                                        <td>{{ number_format($item->qty,2,",",".") }}
                                                             @if ($item2->satuan == 1)
                                                                 Meter
                                                             @elseif ($item2->satuan == 1)

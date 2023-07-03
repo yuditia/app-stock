@@ -76,7 +76,7 @@
                                     <div class="mb-3">
                                         <label for="stok_barang" class="form-label fw-bold">QTY</label>
                                         <input type="text" id="stok_barang" class="form-control"
-                                        aria-describedby="stok_barang" value="{{ number_format($data->qty,0,",",".") }}">
+                                        aria-describedby="stok_barang" value="{{ number_format($data->qty,2,",",".") }}">
                                         <input type="hidden" name="qty" id="stok">
                                         <input type="hidden" name="old_qty" value="{{ $data->qty }}">
                                     </div>
@@ -117,11 +117,11 @@
         $('#stok_barang').on('change',function(){
 
             var qty = $('#stok_barang').val()
-            $('#stok_barang').val(new Intl.NumberFormat("id-ID").format(qty))
+           // $('#stok_barang').val(new Intl.NumberFormat("id-ID").format(qty))
 
             var qty_asli =  $('#stok_barang').val()
-            var qty = qty_asli.replaceAll('.','')
-            $('#stok').val(qty)
+            //var qty = qty_asli.replaceAll('.','')
+            $('#stok').val(qty_asli)
 
         })
 </script>

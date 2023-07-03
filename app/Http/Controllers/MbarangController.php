@@ -107,6 +107,9 @@ class MbarangController extends Controller
 
 
 
+
+
+
         $input = $request->all();
 
         if ($request->file('img_barang')) {

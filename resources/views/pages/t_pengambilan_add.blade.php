@@ -131,7 +131,7 @@
             var html = ''
             html += '<tr>'
             html += '<td><select name="barang[]" id="barang' + count + '" class="form-control form-select add-barang js-example-basic-single" style="width: 100%" required><option value="">Pilih Barang</option>@foreach ($barang as $item) <option value="{{ $item->id }}">{{ $item->nm_barang }} {{ $item->wr_barang }}</option>@endforeach</select></td>'
-            html += '<td><input type="number" name="qty[]" id="qty' + count + '" class="form-control" required></td>'
+            html += '<td><input type="text" name="qty[]" id="qty' + count + '" class="form-control" required></td>'
             html += '<td class="text-center"><button type="button" name="remove" class="btn btn-danger btn-xs remove">Remove</td>'
             html += '</tr>'
             $('#item_table tbody').append(html)

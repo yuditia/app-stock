@@ -65,7 +65,7 @@
                                                             <td>{{ $item2->wr_barang }}</td>
                                                         @endforeach
 
-                                                    <td>{{ $item->qty }}</td>
+                                                    <td>{{ number_format($item->qty,2,",",".") }}</td>
                                                         @foreach ($item->pengambilan as $item2)
                                                             <td>{{ $item2->tgl_pengambilan }}</td>
                                                             <td>{{ $item2->suplier }}</td>
