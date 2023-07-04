@@ -42,14 +42,14 @@
                                         <div class="col-md-3 col-sm-5 rev-padding mb-3">
                                             <label for="inputState">Start Date</label>
                                             <div class="input-group">
-                                                <input type="date" name="start" id="start" class="form-control">
+                                                <input type="text" name="start" id="start" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="col-md-3 col-sm-3">
                                             <label for="inputState">End Date</label>
                                             <div class="input-group ">
-                                                <input type="date" name="end" id="end" class="form-control  w-refrence2">
+                                                <input type="text" name="end" id="end" class="form-control  w-refrence2">
                                                 <div class="input-group-append2">
                                                     <button class="btn btn-primary mkr-4 btn-md ms-3" onclick="apply()" type="button" id="filter">Apply</button>
                                                 </div>
@@ -122,7 +122,7 @@
                                                         </td>
 
                                                                 @foreach ($item->pembelian as $item3)
-                                                                    <td>{{ $item3->tgl_pembelian }}</td>
+                                                                    <td>{{ date("d-m-Y",strtotime($item3->tgl_pembelian)) }}</td>
                                                                     <td>{{ $item3->suplier }}</td>
                                                                 @endforeach
                                                         <td>Rp. {{ number_format($item2->harga,0,",",".") }}</td>
@@ -161,6 +161,18 @@
         $('#nm_barang').select2({
             'width': '50%'
         })
+
+        $('#start').datepicker({
+            "format": "dd-mm-yyyy",
+            autoclose: true
+        });
+
+        $('#end').datepicker({
+            "format": "dd-mm-yyyy",
+            autoclose: true
+        });
+
+
     })
 </script>
 <script type="text/javascript">
@@ -238,7 +250,7 @@
                 {data: 'nm_barang', name: 'nm_barang'},
                 {data: 'wr_barang', name: 'wr_barang'},
                 {data: 'qty', name: 'qty'},
-                {data: 'tgl_pembelian', name: 'tgl_pembelian'},
+                {data: 'tgl_pembelian', name: 'tgl_pembelian',render: $.fn.dataTable.render.moment( 'DD/MM/YYYY' )},
                 {data: 'suplier', name: 'suplier'},
                 {data: 'harga', name: 'harga',render: $.fn.dataTable.render.number( '.', '.', 0, 'Rp ' )},
                 {data: null, name: 'total',render: function(data, type, row, meta)
@@ -308,7 +320,7 @@
                 {data: 'nm_barang', name: 'nm_barang'},
                 {data: 'wr_barang', name: 'wr_barang'},
                 {data: 'qty', name: 'qty'},
-                {data: 'tgl_pembelian', name: 'tgl_pembelian'},
+                {data: 'tgl_pembelian', name: 'tgl_pembelian',render: $.fn.dataTable.render.moment( 'DD/MM/YYYY' )},
                 {data: 'suplier', name: 'suplier'},
                 {data: 'harga', name: 'harga',render: $.fn.dataTable.render.number( '.', '.', 0, 'Rp ' )},
                 {data: null, name: 'total',render: function(data, type, row, meta)

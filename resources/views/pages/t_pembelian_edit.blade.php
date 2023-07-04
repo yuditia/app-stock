@@ -56,8 +56,8 @@
                                     <div class="mb-3">
                                         <label for="tgl_pembelian" class="form-label fw-bold">Tgl Pembelian</label>
                                         @foreach ($data->pembelian as $item)
-                                            <input type="date" id="tgl_pembelian" name="tgl_pembelian" class="form-control"
-                                            aria-describedby="tgl_pembelian" value="{{ $item->tgl_pembelian }}" required>
+                                            <input type="text" id="tgl_pembelian" name="tgl_pembelian" class="form-control"
+                                            aria-describedby="tgl_pembelian" value="{{  date("d-m-Y",strtotime($item->tgl_pembelian)) }}" required>
                                         @endforeach
                                     </div>
 
@@ -112,6 +112,13 @@
 <script src="{{ asset('/js/tinymce.js') }}"></script>
 
 <script>
+
+    $(document).ready(function(){
+        $('#tgl_pembelian').datepicker({
+            "format": "dd-mm-yyyy",
+            autoclose: true
+        });
+    })
 
 
         $('#stok_barang').on('change',function(){

@@ -6,8 +6,10 @@ use App\Models\Mbarang;
 use App\Models\Msuplier;
 use App\Models\Pembelian;
 use App\Models\PembelianBarang;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class PembelianController extends Controller
 {
@@ -28,7 +30,10 @@ class PembelianController extends Controller
     {
         $sup = Msuplier::all();
         $barang = Mbarang::all();
-        return view('pages.t_pembelian_add',compact('sup','barang'));
+        $now = date('Y-m-d');
+
+        $id = IdGenerator::generate(['table' => 't_pembelian','field'=>'no_transaksi', 'length' => 5, 'prefix' =>'T']);
+        return view('pages.t_pembelian_add',compact('sup','barang','now','id'));
     }
 
     /**
@@ -37,8 +42,10 @@ class PembelianController extends Controller
     public function store(Request $request)
     {
 
+        $convert = Carbon::parse($request->tgl_pembelian)->format('Y-m-d');
+
         $pembelian = Pembelian::create([
-            'tgl_pembelian'=>$request->tgl_pembelian,
+            'tgl_pembelian'=>$convert,
             'no_transaksi'=>$request->no_transaksi,
             'suplier'=>$request->suplier,
         ]);
@@ -102,17 +109,24 @@ class PembelianController extends Controller
     {
 
 
+        $con = Carbon::parse($request->tgl_pembelian)->format('Y-m-d');
+
         $data = pembelianBarang::with('barang','pembelian')
                                     ->where('id',$id)
                                     ->first();
 
+        $updated = Pembelian::where('no_transaksi',$data->no_transaksi)->first();
 
-
-        pembelian::where('no_transaksi',$data->no_transasksi)->update([
+        $updated->update([
             'no_transaksi'=>$request->no_transaksi,
-            'tgl_pembelian'=>$request->tgl_pembelian
-
+            'tgl_pembelian'=>$con
         ]);
+
+        // pembelian::where('no_transaksi',$data->no_transasksi)->update([
+        //     'no_transaksi'=>$request->no_transaksi,
+        //     'tgl_pembelian'=>$request->tgl_pembelian
+
+        // ]);
 
 
 

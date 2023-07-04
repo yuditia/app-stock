@@ -67,7 +67,7 @@
 
                                                     <td>{{ $item->qty }}</td>
                                                         @foreach ($item->pembelian as $item2)
-                                                            <td>{{ $item2->tgl_pembelian }}</td>
+                                                            <td>{{ date("d-m-Y",strtotime($item2->tgl_pembelian)) }}</td>
                                                             <td>{{ $item2->suplier }}</td>
                                                         @endforeach
                                                     <td>

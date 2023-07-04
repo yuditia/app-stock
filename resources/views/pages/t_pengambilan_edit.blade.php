@@ -56,8 +56,8 @@
                                     <div class="mb-3">
                                         <label for="tgl_pengambilan" class="form-label fw-bold">Tgl Pengambilan</label>
                                         @foreach ($data->pengambilan as $item)
-                                            <input type="date" id="tgl_pengambilan" name="tgl_pengambilan" class="form-control"
-                                            aria-describedby="tgl_pengambilan" value="{{ $item->tgl_pengambilan }}" required>
+                                            <input type="text" id="tgl_pengambilan" name="tgl_pengambilan" class="form-control"
+                                            aria-describedby="tgl_pengambilan" value="{{  date("d-m-Y",strtotime($item->tgl_pengambilan)) }}" required>
                                         @endforeach
                                     </div>
 
@@ -112,6 +112,13 @@
 <script src="{{ asset('/js/tinymce.js') }}"></script>
 
 <script>
+
+    $(document).ready(function(){
+        $('#tgl_pengambilan').datepicker({
+            "format": "dd-mm-yyyy",
+            autoclose: true
+        });
+    })
 
 
         $('#stok_barang').on('change',function(){

@@ -40,13 +40,13 @@
                                     <div class="mb-3">
                                         <label for="no_transaksi" class="form-label fw-bold">No Transaksi</label>
                                         <input type="text" id="no_transaksi" name="no_transaksi" class="form-control"
-                                        aria-describedby="no_transaksi">
+                                        aria-describedby="no_transaksi" value="{{ $id }}" required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="tgl_pembelian" class="form-label fw-bold">Tgl Pembelian</label>
-                                        <input type="date" id="tgl_pembelian" name="tgl_pembelian" class="form-control"
-                                        aria-describedby="tgl_pembelian" required>
+                                        <input type="text" id="tgl_pembelian" name="tgl_pembelian" class="form-control"
+                                        aria-describedby="tgl_pembelian" value="{{  date("d-m-Y",strtotime($now)) }}" required>
                                     </div>
 
 
@@ -104,10 +104,13 @@
 <script>
     $(document).ready(function() {
 
+        $('#tgl_pembelian').datepicker({
+            "format": "dd-mm-yyyy",
+            autoclose: true
+        });
 
 
-
-        function makeid(length) {
+        {{--  function makeid(length) {
             let result = '';
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             const charactersLength = characters.length;
@@ -119,7 +122,7 @@
             return result;
         }
 
-        $('#no_transaksi').val('TR-' + makeid(10))
+        $('#no_transaksi').val('TR-' + makeid(10))  --}}
 
 
         var count = 0

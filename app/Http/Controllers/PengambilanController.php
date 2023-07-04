@@ -6,8 +6,10 @@ use App\Models\Mbarang;
 use App\Models\Msuplier;
 use App\Models\Pengambilan;
 use App\Models\PengambilanBarang;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class PengambilanController extends Controller
 {
@@ -28,7 +30,11 @@ class PengambilanController extends Controller
     {
         $sup = Msuplier::all();
         $barang = Mbarang::all();
-        return view('pages.t_pengambilan_add',compact('sup','barang'));
+        $now = date('Y-m-d');
+
+        $id = IdGenerator::generate(['table' => 't_pengambilan','field'=>'no_transaksi', 'length' => 5, 'prefix' =>'T']);
+
+        return view('pages.t_pengambilan_add',compact('sup','barang','now','id'));
     }
 
     /**
@@ -37,8 +43,10 @@ class PengambilanController extends Controller
     public function store(Request $request)
     {
 
+        $convert = Carbon::parse($request->tgl_pengambilan)->format('Y-m-d');
+
         $pengambilan = Pengambilan::create([
-            'tgl_pengambilan'=>$request->tgl_pengambilan,
+            'tgl_pengambilan'=>$convert,
             'no_transaksi'=>$request->no_transaksi,
             'suplier'=>$request->suplier,
         ]);
@@ -113,17 +121,28 @@ class PengambilanController extends Controller
     {
 
 
+
+
+        $con = Carbon::parse($request->tgl_pengambilan)->format('Y-m-d');
+
+
+
         $data = PengambilanBarang::with('barang','pengambilan')
                                     ->where('id',$id)
                                     ->first();
 
+        $update = Pengambilan::where('no_transaksi',$data->no_transaksi)->first();
 
-
-        Pengambilan::where('no_transaksi',$data->no_transasksi)->update([
+        $update->update([
             'no_transaksi'=>$request->no_transaksi,
-            'tgl_pengambilan'=>$request->tgl_pengambilan
-
+            'tgl_pengambilan'=>$con
         ]);
+
+        // Pengambilan::where('no_transaksi',$data->no_transasksi)->update([
+        //     'no_transaksi'=>$request->no_transaksi,
+        //     'tgl_pengambilan'=>$con
+
+        // ]);
 
 
 

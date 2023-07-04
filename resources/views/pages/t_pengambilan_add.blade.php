@@ -40,13 +40,14 @@
                                     <div class="mb-3">
                                         <label for="no_transaksi" class="form-label fw-bold">No Transaksi</label>
                                         <input type="text" id="no_transaksi" name="no_transaksi" class="form-control"
-                                        aria-describedby="no_transaksi">
+                                        aria-describedby="no_transaksi" value="{{ $id }}">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="tgl_pengambilan" class="form-label fw-bold">Tgl Pengambilan</label>
-                                        <input type="date" id="tgl_pengambilan" name="tgl_pengambilan" class="form-control"
-                                        aria-describedby="tgl_pengambilan" required>
+                                        <input type="text" id="tgl_pengambilan" name="tgl_pengambilan" class="form-control" placeholder="dd-mm-yyyy"
+                                        aria-describedby="tgl_pengambilan" value="{{  date("d-m-Y",strtotime($now)) }}"
+                                        required>
                                     </div>
 
 
@@ -105,9 +106,12 @@
     $(document).ready(function() {
 
 
+        $('#tgl_pengambilan').datepicker({
+            "format": "dd-mm-yyyy",
+            autoclose: true
+        });
 
-
-        function makeid(length) {
+        {{--  function makeid(length) {
             let result = '';
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             const charactersLength = characters.length;
@@ -119,7 +123,7 @@
             return result;
         }
 
-        $('#no_transaksi').val('TR-' + makeid(10))
+        $('#no_transaksi').val('TR-' + makeid(10))  --}}
 
 
         var count = 0
