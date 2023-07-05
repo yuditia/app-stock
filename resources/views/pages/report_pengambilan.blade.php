@@ -106,17 +106,17 @@
                                                         <td>{{ $item2->wr_barang }}</td>
 
                                                         <td>{{ number_format($item->qty,2,",",".") }}
-                                                            @if ($item2->satuan == 1)
+                                                            @if ($item->satuan == 1)
                                                                 Meter
-                                                            @elseif ($item2->satuan == 1)
+                                                            @elseif ($item->satuan == 2)
                                                                 Pasang
-                                                            @elseif ($item2->satuan == 2)
+                                                            @elseif ($item->satuan == 3)
                                                                 Blek
-                                                            @elseif ($item2->satuan == 3)
+                                                            @elseif ($item->satuan == 4)
                                                                 Galon
-                                                            @elseif ($item2->satuan == 4)
+                                                            @elseif ($item->satuan == 5)
                                                                 Kodi
-                                                            @elseif ($item2->satuan == 5)
+                                                            @elseif ($item->satuan == 6)
                                                                 Pc
                                                             @endif
                                                         </td>
@@ -156,6 +156,8 @@
 
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js" charset="utf8"></script>
+
 <script>
     $(document).ready(function() {
         $('#nm_barang').select2({
@@ -172,6 +174,8 @@
             "format": "dd-mm-yyyy",
             autoclose: true
         });
+
+
     })
 </script>
 <script type="text/javascript">
@@ -248,8 +252,30 @@
                 {data: 'no_transaksi', name: 'no_transaksi'},
                 {data: 'nm_barang', name: 'nm_barang'},
                 {data: 'wr_barang', name: 'wr_barang'},
-                {data: 'qty', name: 'qty'},
-                {data: 'tgl_pengambilan', name: 'tgl_pengambilan',render: $.fn.dataTable.render.moment( 'DD/MM/YYYY' )},
+                {data: null, name: 'qty',render:function(data, type, row, meta){
+                    function change(e){
+                        if(e == 1){
+                            return 'Meter';
+                        }else if(e == 2){
+                            return 'Pasang';
+                        }else if(e == 3){
+                            return 'Blek';
+                        }else if(e == 4){
+                            return 'Galon';
+                        }else if(e == 5){
+                            return 'Kodi';
+                        }else{
+                            return 'Pc';
+                        }
+                    }
+
+                    const price = data.qty
+                    const rupiah = new Intl.NumberFormat("id-ID",{maximumFractionDigits: 2,
+                        minimumFractionDigits: 0,}).format(price);
+
+                    return rupiah + ' ' + change(data.satuan)
+                }},
+                {data: 'tgl_pengambilan', name: 'tgl_pengambilan',render: DataTable.render.datetime('DD-MM-YYYY')},
                 {data: 'suplier', name: 'suplier'},
                 {data: 'harga', name: 'harga',render: $.fn.dataTable.render.number( '.', '.', 0, 'Rp ' )},
                 {data: null, name: 'total',render: function(data, type, row, meta)
@@ -318,8 +344,31 @@
                 {data: 'no_transaksi', name: 'no_transaksi'},
                 {data: 'nm_barang', name: 'nm_barang'},
                 {data: 'wr_barang', name: 'wr_barang'},
-                {data: 'qty', name: 'qty'},
-                {data: 'tgl_pengambilan', name: 'tgl_pengambilan',render: $.fn.dataTable.render.moment( 'DD/MM/YYYY' )},
+                {data: null, name: 'qty',render:function(data, type, row, meta){
+                    function change(e){
+                        if(e == 1){
+                            return 'Meter';
+                        }else if(e == 2){
+                            return 'Pasang';
+                        }else if(e == 3){
+                            return 'Blek';
+                        }else if(e == 4){
+                            return 'Galon';
+                        }else if(e == 5){
+                            return 'Kodi';
+                        }else{
+                            return 'Pc';
+                        }
+                    }
+
+                    const price = data.qty
+                    const rupiah = new Intl.NumberFormat("id-ID",{maximumFractionDigits: 2,
+                        minimumFractionDigits: 0,}).format(price);
+
+                    return rupiah + ' ' + change(data.satuan)
+                }},
+
+                {data: 'tgl_pengambilan', name: 'tgl_pengambilan',render: DataTable.render.datetime('DD-MM-YYYY')},
                 {data: 'suplier', name: 'suplier'},
                 {data: 'harga', name: 'harga',render: $.fn.dataTable.render.number( '.', '.', 0, 'Rp ' )},
                 {data: null, name: 'total',render: function(data, type, row, meta)

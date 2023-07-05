@@ -68,17 +68,17 @@
 
                                                                 <td>
                                                                     {{ number_format($item->qty,2,",",".") }}
-                                                                    @if ($item2->satuan == 1)
+                                                                    @if ($item->satuan == 1)
                                                                         Meter
-                                                                    @elseif ($item2->satuan == 1)
+                                                                    @elseif ($item->satuan == 2)
                                                                         Pasang
-                                                                    @elseif ($item2->satuan == 2)
+                                                                    @elseif ($item->satuan == 3)
                                                                         Blek
-                                                                    @elseif ($item2->satuan == 3)
+                                                                    @elseif ($item->satuan == 4)
                                                                         Galon
-                                                                    @elseif ($item2->satuan == 4)
+                                                                    @elseif ($item->satuan == 5)
                                                                         Kodi
-                                                                    @elseif ($item2->satuan == 5)
+                                                                    @elseif ($item->satuan == 6)
                                                                         Pc
                                                                     @endif
 

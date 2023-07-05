@@ -108,15 +108,15 @@
                                                         <td>{{ number_format($item->qty,2,",",".") }}
                                                             @if ($item2->satuan == 1)
                                                                 Meter
-                                                            @elseif ($item2->satuan == 1)
-                                                                Pasang
                                                             @elseif ($item2->satuan == 2)
-                                                                Blek
+                                                                Pasang
                                                             @elseif ($item2->satuan == 3)
-                                                                Galon
+                                                                Blek
                                                             @elseif ($item2->satuan == 4)
-                                                                Kodi
+                                                                Galon
                                                             @elseif ($item2->satuan == 5)
+                                                                Kodi
+                                                            @elseif ($item2->satuan == 6)
                                                                 Pc
                                                             @endif
                                                         </td>
@@ -249,8 +249,30 @@
                 {data: 'no_transaksi', name: 'no_transaksi'},
                 {data: 'nm_barang', name: 'nm_barang'},
                 {data: 'wr_barang', name: 'wr_barang'},
-                {data: 'qty', name: 'qty'},
-                {data: 'tgl_pembelian', name: 'tgl_pembelian',render: $.fn.dataTable.render.moment( 'DD/MM/YYYY' )},
+                {data: null, name: 'qty',render:function(data, type, row, meta){
+                    function change(e){
+                        if(e == 1){
+                            return 'Meter';
+                        }else if(e == 2){
+                            return 'Pasang';
+                        }else if(e == 3){
+                            return 'Blek';
+                        }else if(e == 4){
+                            return 'Galon';
+                        }else if(e == 5){
+                            return 'Kodi';
+                        }else{
+                            return 'Pc';
+                        }
+                    }
+
+                    const price = data.qty
+                    const rupiah = new Intl.NumberFormat("id-ID",{maximumFractionDigits: 2,
+                        minimumFractionDigits: 0,}).format(price);
+
+                    return rupiah + ' ' + change(data.satuan)
+                }},
+                {data: 'tgl_pembelian', name: 'tgl_pembelian',render: DataTable.render.datetime('DD-MM-YYYY')},
                 {data: 'suplier', name: 'suplier'},
                 {data: 'harga', name: 'harga',render: $.fn.dataTable.render.number( '.', '.', 0, 'Rp ' )},
                 {data: null, name: 'total',render: function(data, type, row, meta)
@@ -319,8 +341,30 @@
                 {data: 'no_transaksi', name: 'no_transaksi'},
                 {data: 'nm_barang', name: 'nm_barang'},
                 {data: 'wr_barang', name: 'wr_barang'},
-                {data: 'qty', name: 'qty'},
-                {data: 'tgl_pembelian', name: 'tgl_pembelian',render: $.fn.dataTable.render.moment( 'DD/MM/YYYY' )},
+                {data: null, name: 'qty',render:function(data, type, row, meta){
+                    function change(e){
+                        if(e == 1){
+                            return 'Meter';
+                        }else if(e == 2){
+                            return 'Pasang';
+                        }else if(e == 3){
+                            return 'Blek';
+                        }else if(e == 4){
+                            return 'Galon';
+                        }else if(e == 5){
+                            return 'Kodi';
+                        }else{
+                            return 'Pc';
+                        }
+                    }
+
+                    const price = data.qty
+                    const rupiah = new Intl.NumberFormat("id-ID",{maximumFractionDigits: 2,
+                        minimumFractionDigits: 0,}).format(price);
+
+                    return rupiah + ' ' + change(data.satuan)
+                }},
+                {data: 'tgl_pembelian', name: 'tgl_pembelian',render: DataTable.render.datetime('DD-MM-YYYY')},
                 {data: 'suplier', name: 'suplier'},
                 {data: 'harga', name: 'harga',render: $.fn.dataTable.render.number( '.', '.', 0, 'Rp ' )},
                 {data: null, name: 'total',render: function(data, type, row, meta)

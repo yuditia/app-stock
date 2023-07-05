@@ -65,16 +65,16 @@
                                                     <td><p class="clamp-3">{{ $item->wr_barang }}</p></td>
                                                     <td>{{ number_format($item->stok_barang,2,",",".") }}
                                                         @if ($item->satuan == 1)
-                                                            Meter
-                                                        @elseif ($item->satuan == 1)
-                                                            Pasang
+                                                        Meter
                                                         @elseif ($item->satuan == 2)
-                                                            Blek
+                                                            Pasang
                                                         @elseif ($item->satuan == 3)
-                                                            Galon
+                                                            Blek
                                                         @elseif ($item->satuan == 4)
-                                                            Kodi
+                                                            Galon
                                                         @elseif ($item->satuan == 5)
+                                                            Kodi
+                                                        @elseif ($item->satuan == 6)
                                                             Pc
                                                         @endif
                                                     </td>
