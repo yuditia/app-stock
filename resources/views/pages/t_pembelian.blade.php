@@ -57,15 +57,34 @@
 
                                             <tbody>
                                                 @foreach ($data as $item)
+
                                                 <tr>
                                                     <td></td>
                                                     <td>{{ $item->no_transaksi }}</td>
                                                         @foreach ($item->barang as $item2)
                                                             <td>{{ $item2->nm_barang }}</td>
                                                             <td>{{ $item2->wr_barang }}</td>
-                                                        @endforeach
 
-                                                    <td>{{ $item->qty }}</td>
+
+                                                                <td>
+                                                                    {{ number_format($item->qty,2,",",".") }}
+                                                                    @if ($item2->satuan == 1)
+                                                                        Meter
+                                                                    @elseif ($item2->satuan == 1)
+                                                                        Pasang
+                                                                    @elseif ($item2->satuan == 2)
+                                                                        Blek
+                                                                    @elseif ($item2->satuan == 3)
+                                                                        Galon
+                                                                    @elseif ($item2->satuan == 4)
+                                                                        Kodi
+                                                                    @elseif ($item2->satuan == 5)
+                                                                        Pc
+                                                                    @endif
+
+
+                                                                </td>
+                                                        @endforeach
                                                         @foreach ($item->pembelian as $item2)
                                                             <td>{{ date("d-m-Y",strtotime($item2->tgl_pembelian)) }}</td>
                                                             <td>{{ $item2->suplier }}</td>

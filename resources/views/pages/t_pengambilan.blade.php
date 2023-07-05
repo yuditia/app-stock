@@ -63,9 +63,25 @@
                                                         @foreach ($item->barang as $item2)
                                                             <td>{{ $item2->nm_barang }}</td>
                                                             <td>{{ $item2->wr_barang }}</td>
-                                                        @endforeach
 
-                                                    <td>{{ number_format($item->qty,2,",",".") }}</td>
+                                                            <td>
+                                                                {{ number_format($item->qty,2,",",".") }}
+
+                                                                    @if ($item2->satuan == 1)
+                                                                        Meter
+                                                                    @elseif ($item2->satuan == 1)
+                                                                        Pasang
+                                                                    @elseif ($item2->satuan == 2)
+                                                                        Blek
+                                                                    @elseif ($item2->satuan == 3)
+                                                                        Galon
+                                                                    @elseif ($item2->satuan == 4)
+                                                                        Kodi
+                                                                    @elseif ($item2->satuan == 5)
+                                                                        Pc
+                                                                    @endif
+                                                            </td>
+                                                            @endforeach
                                                         @foreach ($item->pengambilan as $item2)
                                                             <td>{{  date("d-m-Y",strtotime($item2->tgl_pengambilan)) }}</td>
                                                             <td>{{ $item2->suplier }}</td>
