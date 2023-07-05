@@ -13,7 +13,13 @@ $(function() {
       "iDisplayLength": 10,
       "language": {
         search: ""
-      }
+      },
+      columnDefs: [{
+        targets: 0,
+        orderable: false,
+        searchable: false,
+
+      }]
     });
 
     $('#dataTableExample').each(function() {

@@ -116,7 +116,7 @@
     });
     </script>
 <script>
-    $('#report-stock').DataTable({
+    {{--  $('#report-stock').DataTable({
         dom: 'Bfrtip',
         "paging": true,
         "pageLength": 10,
@@ -139,7 +139,52 @@
                                     titleAttr: 'PDF'
                                 }
                             ],
+    });  --}}
+
+    const table = new DataTable('#report-stock', {
+        dom: 'Bfrtip',
+        "paging": true,
+        "pageLength": 10,
+        lengthMenu: [[ 10, 25, 50, -1 ], [10, 25, 50, "All"]],
+        buttons: [
+        'pageLength',
+                                {
+                                    extend:    'copy',
+                                    text:      '<i class="bi bi-clipboard-check mr-2"></i> Copy',
+                                    titleAttr: 'Copy'
+                                },
+                                {
+                                    extend:    'excel',
+                                    text:      '<i class="bi bi-file-excel mr-2"></i> Excel',
+                                    titleAttr: 'Excel'
+                                },
+                                {
+                                    extend:    'print',
+                                    text:      '<i class="bi bi-printer-fill mr-2"></i> Print',
+                                    titleAttr: 'PDF'
+                                }
+                            ],
+        columnDefs: [
+            {
+                searchable: false,
+                orderable: false,
+                targets: 0
+            }
+        ],
+        order: [[1, 'asc']]
     });
+
+    table
+        .on('order.dt search.dt', function () {
+            let i = 1;
+
+            table
+                .cells(null, 0, { search: 'applied', order: 'applied' })
+                .every(function (cell) {
+                    this.data(i++);
+                });
+        })
+        .draw();
 
 </script>
 
