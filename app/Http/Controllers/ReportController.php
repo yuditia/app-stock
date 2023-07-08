@@ -45,6 +45,7 @@ class ReportController extends Controller
            ->join('m_barang', 't_pengambilan_barang.barang_id', '=', 'm_barang.id')
            ->join('t_pengambilan', 't_pengambilan_barang.no_transaksi', '=', 't_pengambilan.no_transaksi')
            ->where('m_barang.id', $barang_id)
+           ->distinct()
            ->get();
 
            return DataTables::of($data)->toJson();
@@ -81,6 +82,7 @@ class ReportController extends Controller
            ->join('m_barang', 't_pembelian_barang.barang_id', '=', 'm_barang.id')
            ->join('t_pembelian', 't_pembelian_barang.no_transaksi', '=', 't_pembelian.no_transaksi')
            ->where('m_barang.id', $barang_id)
+           ->distinct()
            ->get();
 
            return DataTables::of($data)->toJson();

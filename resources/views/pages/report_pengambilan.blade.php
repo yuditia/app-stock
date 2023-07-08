@@ -80,7 +80,7 @@
 
                                     <div class="table-responsive">
 
-                                        <table id="report-stock" class="table img-view-hostory">
+                                        <table id="report_pengambilan" class="table img-view-hostory">
                                             <thead>
                                                 <tr>
 
@@ -186,7 +186,7 @@
     });
     </script>
 <script>
-    $('#report-stock').DataTable({
+    $('#report_pengambilan').DataTable({
         dom: 'Bfrtip',
         "paging": true,
         "pageLength": 10,
@@ -222,8 +222,8 @@
         $.get('filter-pengambilan/'+start +'/'+end, function(data){
             console.log(data.data)
 
-            $('#report-stock').DataTable().destroy();
-            $('#report-stock').DataTable({
+            $('#report_pengambilan').DataTable().destroy();
+            $('#report_pengambilan').DataTable({
                 dom: 'Bfrtip',
                 "paging": true,
                 "pageLength": 10,
@@ -314,8 +314,8 @@
         $.get('filter-pengambilan-barang/'+barang_id , function(data){
             console.log(data.data)
 
-            $('#report-stock').DataTable().destroy();
-            $('#report-stock').DataTable({
+            $('#report_pengambilan').DataTable().destroy();
+            $('#report_pengambilan').DataTable({
                 dom: 'Bfrtip',
                 "paging": true,
                 "pageLength": 10,
@@ -404,5 +404,10 @@
 <style>
     .select2-container--default .select2-selection--single .select2-selection__rendered {
         line-height: 10px;
+    }
+
+
+    #report_pengambilan tbody th, #report_pengambilan tbody td {
+        padding: 3px 10px; /* e.g. change 8x to 4px here */
     }
 </style>

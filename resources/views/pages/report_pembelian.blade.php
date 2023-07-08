@@ -401,4 +401,8 @@
     .select2-container--default .select2-selection--single .select2-selection__rendered {
         line-height: 10px;
     }
+
+    #report-stock tbody th, #report-stock tbody td {
+        padding: 3px 10px; /* e.g. change 8x to 4px here */
+    }
 </style>
