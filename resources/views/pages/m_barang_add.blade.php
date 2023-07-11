@@ -69,6 +69,7 @@
                                             <option value="4">Galon</option>
                                             <option value="5">Kodi</option>
                                             <option value="6">Pc</option>
+                                            <option value="7">Jeriken</option>
                                           </select>
 
                                     </div>

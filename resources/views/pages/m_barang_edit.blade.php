@@ -74,6 +74,7 @@
                                             <option value="4" {{ $barang->satuan == 4 ? 'selected' : '' }}>Galon</option>
                                             <option value="5" {{ $barang->satuan == 5 ? 'selected' : '' }}>Kodi</option>
                                             <option value="6" {{ $barang->satuan == 6 ? 'selected' : '' }}>Pc</option>
+                                            <option value="7" {{ $barang->satuan == 6 ? 'selected' : '' }}>Jeriken</option>
                                           </select>
 
                                     </div>

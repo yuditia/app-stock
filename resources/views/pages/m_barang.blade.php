@@ -73,6 +73,8 @@
                                                             Kodi
                                                         @elseif ($item->satuan == 6)
                                                             Pc
+                                                        @elseif ($item->satuan == 7)
+                                                            Jeriken
                                                         @endif
                                                     </td>
                                                     <td>Rp. {{ number_format($item->harga,0,",",".") }}</td>
