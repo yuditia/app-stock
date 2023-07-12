@@ -41,7 +41,7 @@
 
                                     <div class="table-responsive">
 
-                                        <table id="example" class="table img-view-hostory">
+                                        <table id="example2" class="table img-view-hostory">
                                             <thead>
                                                 <tr>
                                                     <th>Nomor</th>
@@ -124,94 +124,100 @@
     });
     </script>
 <script>
-    $(function(){
-        $('.delete').on('click',function(){
-
-            var id = $(this).data("id")
-
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                  confirmButton: 'btn btn-success',
-                  cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: false
-              })
-
-              swalWithBootstrapButtons.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                reverseButtons: true
-              }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        type: "DELETE",
-                        url: "/pengambilan" + '/' + id,
-                        cache: false,
-                        data: id,
-                        processData: false,
-                        contentType: false,
-                        dataType: 'JSON',
+    $(document).ready(function(){
 
 
-                        success: function (data) {
 
+                    $('.delete').on('click',function(){
+
+                        var id = $(this).data("id")
+
+                        const swalWithBootstrapButtons = Swal.mixin({
+                            customClass: {
+                            confirmButton: 'btn btn-success',
+                            cancelButton: 'btn btn-danger'
+                            },
+                            buttonsStyling: false
+                        })
+
+                        swalWithBootstrapButtons.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'No, cancel!',
+                            reverseButtons: true
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    type: "DELETE",
+                                    url: "/pengambilan" + '/' + id,
+                                    cache: false,
+                                    data: id,
+                                    processData: false,
+                                    contentType: false,
+                                    dataType: 'JSON',
+
+
+                                    success: function (data) {
+
+                                        swalWithBootstrapButtons.fire(
+                                            'Deleted!',
+                                            'Your file has been deleted.',
+                                            'success'
+                                        )
+
+                                    setTimeout(function () {
+                                        location.reload();
+                                        }, 3000);
+
+                                    },
+                                    error: function (data, jqXHR, textStatus, errorThrown) {
+                                        console.log('data',data);
+                                        console.log(textStatus);
+                                    },
+                                });
+
+                            } else if (
+                            /* Read more about handling dismissals below */
+                            result.dismiss === Swal.DismissReason.cancel
+                            ) {
                             swalWithBootstrapButtons.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
+                                'Cancelled',
+                                'Your imaginary file is safe :)',
+                                'error'
                             )
+                            }
+                        })
 
-                        setTimeout(function () {
-                            location.reload();
-                            }, 3000);
-
-                        },
-                        error: function (data, jqXHR, textStatus, errorThrown) {
-                            console.log('data',data);
-                            console.log(textStatus);
-                        },
-                    });
-
-                } else if (
-                  /* Read more about handling dismissals below */
-                  result.dismiss === Swal.DismissReason.cancel
-                ) {
-                  swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    'Your imaginary file is safe :)',
-                    'error'
-                  )
-                }
-              })
-
-        })
-    })
+                    })
 
 
-    const table = new DataTable('#example', {
-        columnDefs: [
-            {
-                searchable: false,
-                orderable: false,
-                targets: 0
-            }
-        ],
-        order: [[1, 'asc']]
-    });
 
-    table
-        .on('order.dt search.dt', function () {
-            let i = 1;
-
-            table
-                .cells(null, 0, { search: 'applied', order: 'applied' })
-                .every(function (cell) {
-                    this.data(i++);
+                const table = new DataTable('#example2', {
+                    columnDefs: [
+                        {
+                            searchable: false,
+                            orderable: false,
+                            targets: 0
+                        }
+                    ],
+                    order: [[1, 'asc']]
                 });
-        })
-        .draw();
+
+                table
+                    .on('order.dt search.dt', function () {
+                        let i = 1;
+
+                        table
+                            .cells(null, 0, { search: 'applied', order: 'applied' })
+                            .every(function (cell) {
+                                this.data(i++);
+                            });
+                    })
+                    .draw();
+
+
+    })
 </script>

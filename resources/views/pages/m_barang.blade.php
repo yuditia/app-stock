@@ -81,7 +81,8 @@
                                                     <td>
                                                         <a href="/barang/{{ $item->id }}/edit" class="btn btn-primary"> Edit </a>
 
-                                                        <a href="#" class="btn btn-danger delete"  data-id="{{ $item->id }}">Delete</a></td>
+                                                        <a href="#" data-id="{{ $item->id }}" class="btn btn-danger delete-data-p" type="button">Delete</a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -116,9 +117,11 @@
     });
     </script>
 <script>
-    $(function(){
-        $('.delete').on('click',function(){
+    $(document).ready(function() {
 
+
+        $('.delete-data-p').on('click',function(e){
+            e.preventDefault()
             var id = $(this).data("id")
 
             const swalWithBootstrapButtons = Swal.mixin({
@@ -179,33 +182,40 @@
                   )
                 }
               })
-
         })
-    })
 
 
-    const table = new DataTable('#example', {
-        columnDefs: [
-            {
-                searchable: false,
-                orderable: false,
-                targets: 0
-            }
-        ],
-        order: [[1, 'asc']]
+
+
+
+        const table = new DataTable('#example', {
+            columnDefs: [
+                {
+                    searchable: false,
+                    orderable: false,
+                    targets: 0
+                }
+            ],
+            order: [[1, 'asc']]
+        });
+
+        table
+            .on('order.dt search.dt', function () {
+                let i = 1;
+
+                table
+                    .cells(null, 0, { search: 'applied', order: 'applied' })
+                    .every(function (cell) {
+                        this.data(i++);
+                    });
+            })
+            .draw();
     });
 
-    table
-        .on('order.dt search.dt', function () {
-            let i = 1;
 
-            table
-                .cells(null, 0, { search: 'applied', order: 'applied' })
-                .every(function (cell) {
-                    this.data(i++);
-                });
-        })
-        .draw();
+
+
+
 
 
 

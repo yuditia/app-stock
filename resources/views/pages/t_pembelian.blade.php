@@ -41,7 +41,7 @@
 
                                     <div class="table-responsive">
 
-                                        <table id="example" class="table img-view-hostory">
+                                        <table id="example1" class="table img-view-hostory">
                                             <thead>
                                                 <tr>
                                                     <th>Nomor</th>
@@ -92,7 +92,7 @@
                                                     <td>
                                                         <a href="/pembelian/{{ $item->id }}/edit" class="btn btn-primary"> Edit </a>
 
-                                                        <a href="#" class="btn btn-danger delete"  data-id="{{ $item->id }}">Delete</a></td>
+                                                        <a href="#" class="btn btn-danger delet-data-go" type="button"  data-id="{{ $item->id }}">Delete</a></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -127,9 +127,11 @@
     });
     </script>
 <script>
-    $(function(){
-        $('.delete').on('click',function(){
+    $(document).ready(function() {
 
+
+        $('.delet-data-go').on('click',function(e){
+            e.preventDefault()
             var id = $(this).data("id")
 
             const swalWithBootstrapButtons = Swal.mixin({
@@ -191,30 +193,36 @@
                 }
               })
 
+
         })
-    })
 
 
-    const table = new DataTable('#example', {
-        columnDefs: [
-            {
-                searchable: false,
-                orderable: false,
-                targets: 0
-            }
-        ],
-        order: [[1, 'asc']]
-    });
 
-    table
-        .on('order.dt search.dt', function () {
-            let i = 1;
+
+            const table = new DataTable('#example1', {
+                columnDefs: [
+                    {
+                        searchable: false,
+                        orderable: false,
+                        targets: 0
+                    }
+                ],
+                order: [[1, 'asc']]
+            });
 
             table
-                .cells(null, 0, { search: 'applied', order: 'applied' })
-                .every(function (cell) {
-                    this.data(i++);
-                });
-        })
-        .draw();
+                .on('order.dt search.dt', function () {
+                    let i = 1;
+
+                    table
+                        .cells(null, 0, { search: 'applied', order: 'applied' })
+                        .every(function (cell) {
+                            this.data(i++);
+                        });
+                })
+                .draw();
+
+
+    })
+
 </script>

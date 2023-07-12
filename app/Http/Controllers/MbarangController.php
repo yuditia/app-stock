@@ -152,6 +152,7 @@ class MbarangController extends Controller
      */
     public function destroy(string $id)
     {
+
         $banner = Mbarang::find($id);
 
         $banner->delete();
