@@ -32,7 +32,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form action="{{ route('user.store') }}" method="POST" >
+                                <form action="{{ route('user.store') }}" method="POST" autocomplete="off">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="youtube" class="form-label fw-bold">Name</label>

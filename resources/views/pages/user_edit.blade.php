@@ -32,7 +32,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form action="/user/{{ $user->id }}" method="POST">
+                                <form action="/user/{{ $user->id }}" method="POST" autocomplete="off">
                                     @csrf
                                     @method('PUT')
                                     <div class="mb-3">

@@ -35,7 +35,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form action="{{ route('pengambilan.store') }}" method="POST" >
+                                <form action="{{ route('pengambilan.store') }}" method="POST" autocomplete="off">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="no_transaksi" class="form-label fw-bold">No Transaksi</label>

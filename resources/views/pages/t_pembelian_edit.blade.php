@@ -32,7 +32,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form action="/pembelian/{{ $data->id }}" method="POST">
+                                <form action="/pembelian/{{ $data->id }}" method="POST" autocomplete="off">
                                     @csrf
                                     @method('PUT')
 

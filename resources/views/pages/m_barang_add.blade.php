@@ -32,7 +32,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form action="{{ route('barang.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('barang.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="img_barang" class="form-label fw-bold">Image barang</label>

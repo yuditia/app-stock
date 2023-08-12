@@ -32,7 +32,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form action="/barang/{{ $barang->id }}" enctype="multipart/form-data" method="POST">
+                                <form action="/barang/{{ $barang->id }}" enctype="multipart/form-data" method="POST" autocomplete="off">
                                     @csrf
                                     @method('PUT')
                                     <div class="mb-3">

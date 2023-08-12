@@ -32,7 +32,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form action="{{ route('suplier.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('suplier.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="nm_suplier" class="form-label fw-bold">Nama Suplier</label>
